@@ -10,14 +10,12 @@
  * In the browser console, run:
  *   - enableSignOffDebugging()      // Allows sign-off in Draft status
  *   - disableSignOffDebugging()     // Restores normal Draft status requirement
- *   - enableClearSignOffDebugging() // Allows clearing sign-off even when both have signed
- *   - disableClearSignOffDebugging()// Restores normal clear sign-off restriction
  *   - setSignOffRole('producer')    // Show PA status only (no button)
  *   - setSignOffRole('advisor')     // Show PA status with sign-off button
  *   - setSignOffRole('both')        // Show PA status with sign-off button
  *   - setSignOffRole('none')        // Hide all sign-off UI
  *   - resetSignOffRole()            // Restore actual user roles
- *   - forceClearSignOff()           // Force clear PA sign-off (bypasses all restrictions)
+ *   - forceClearSignOff()           // Force clear PA sign-off via API (for testing)
  *   - getSignOffDebugStatus()       // Display current debug settings
  */
 import { LitElement } from 'lit';
@@ -25,8 +23,6 @@ declare global {
     interface Window {
         enableSignOffDebugging: () => void;
         disableSignOffDebugging: () => void;
-        enableClearSignOffDebugging: () => void;
-        disableClearSignOffDebugging: () => void;
         setSignOffRole: (role: 'producer' | 'advisor' | 'both' | 'none') => void;
         resetSignOffRole: () => void;
         getSignOffDebugStatus: () => void;
@@ -59,45 +55,7 @@ export declare class WorkbookSignOffButtons extends LitElement {
      * - Workbook in Expired status
      */
     private canPASignOff;
-    /**
-     * Check if PA can cancel their sign-off
-     * Enable cancel sign-off only for:
-     * - PA Signed (for the PA)
-     * - UNLESS both PA and Producer have signed (then disable Clear Sign-Off)
-     * - UNLESS workbook is in Completed status (then disable Clear Sign-Off)
-     *   (can be bypassed with debug mode)
-     */
-    private canPACancelSignOff;
-    /**
-     * Check if Producer sign-off button should be enabled
-     * Enable sign-off only when:
-     * - Workbook in Assigned status OR PA Signed status (meaning PA has signed)
-     *
-     * Disable sign-off for:
-     * - Workbook in Draft status (unless debug mode is enabled)
-     * - Producer Signed (for the Producer - they already signed)
-     * - Workbook in Completed status
-     * - Workbook in Expired status
-     */
-    private canProducerSignOff;
-    /**
-     * Check if Producer can cancel their sign-off
-     * Enable cancel sign-off only for:
-     * - Producer Signed (for the Producer)
-     * - UNLESS both PA and Producer have signed (then disable Clear Sign-Off)
-     *   (can be bypassed with debug mode)
-     */
-    private canProducerCancelSignOff;
-    /**
-     * Get tooltip message for PA button when disabled
-     */
-    private getPADisabledTooltip;
-    /**
-     * Get tooltip message for Producer button when disabled
-     */
-    private getProducerDisabledTooltip;
     private handlePASignOff;
-    private handleProducerSignOff;
     private handleSignOff;
     render(): import("lit-html").TemplateResult<1>;
 }
