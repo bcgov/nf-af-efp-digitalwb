@@ -1,5 +1,5 @@
 /*!
-* powerpod 5.0.8
+* powerpod 5.0.9
 * https://github.com/bcgov/nr-af-pods/powerpod
 *
 * @license GPLv3 for open source use only
@@ -23871,7 +23871,7 @@
 
     .sidebar,
     navigation-sidebar {
-      order: 1;
+      order: 2;
       flex: 0 0 100%;
       width: 100%;
       max-width: 100%;
@@ -23880,7 +23880,7 @@
     }
 
     .main-content {
-      order: 2;
+      order: 1;
       flex: 0 0 100%;
       min-height: auto; /* Remove min-height on mobile */
     }
@@ -28752,7 +28752,7 @@
       };
     };
     // @ts-ignore
-    POWERPOD.version = '5.0.8';
+    POWERPOD.version = '5.0.9';
     // @ts-ignore
     window.powerpod = POWERPOD;
   }

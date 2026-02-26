@@ -2,7 +2,7 @@
   -------------------
   FILE INFO
   -------------------
-  version: 1.1.1
+  version: 1.1.2
   name: Home Page Web Template
   type: Web Template/HTML
   description: Dynamic Liquid HTML that renders logged-in or logged-out content for the home page.
@@ -65,13 +65,9 @@ Fetch the portal page content for the chosen internalName
       <div class="bcgov-content">
         <h2 class="styled-h2">Welcome to the BC Environmental Farm Plan Workbook</h2>
 
-        {% if efpProducer %}
+        {% if isAuthenticated %}
           <div style="margin:8px 0 16px;">
-            <a href="/my-efp-workbooks/" class="button1 btn">Create workbook</a>
-          </div>
-        {% elsif isAuthenticated %}
-          <div style="margin:8px 0 16px;">
-            <!-- No create workbook button for planning advisors and other authenticated users -->
+            <a href="/my-efp-workbooks/" class="button1 btn">My EFP Workbooks</a>
           </div>
         {% else %}
           <div style="display:flex;gap:10px;flex-wrap:wrap;margin:8px 0 16px;">

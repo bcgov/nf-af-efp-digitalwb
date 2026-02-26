@@ -142,7 +142,7 @@ export const efpEntryFormStyles = css`
 
     .sidebar,
     navigation-sidebar {
-      order: 1;
+      order: 2;
       flex: 0 0 100%;
       width: 100%;
       max-width: 100%;
@@ -151,7 +151,7 @@ export const efpEntryFormStyles = css`
     }
 
     .main-content {
-      order: 2;
+      order: 1;
       flex: 0 0 100%;
       min-height: auto; /* Remove min-height on mobile */
     }
