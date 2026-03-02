@@ -1908,6 +1908,7 @@ div[dir='rtl']
   color: #ffffff !important;
   padding: 10px 16px !important;
   text-decoration: none !important;
+  cursor: pointer !important;
 }
 
 /* Nav link hover state */
@@ -1942,6 +1943,7 @@ div[dir='rtl']
 .navbar .nav.navbar-nav.weblinks .nav-item.dropdown .nav-link.dropdown-toggle {
   /* background-color: #1d3a69 !important; */
   color: #ffffff !important;
+  cursor: pointer !important;
 }
 
 .navbar .nav.navbar-nav.weblinks .nav-item.dropdown .nav-link.dropdown-toggle:hover {

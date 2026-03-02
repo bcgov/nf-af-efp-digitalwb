@@ -65,6 +65,7 @@ export const efpEntryFormStyles = css`
     width: 100% !important;
     max-width: 100% !important;
     box-sizing: border-box !important;
+    cursor: pointer !important;
   }
 
   sl-details::part(content) {
@@ -513,6 +514,7 @@ export const efpEntryFormStyles = css`
     font-weight: 500;
     font-size: 1rem;
     color: var(--sl-color-neutral-700);
+    cursor: pointer;
   }
 
   /* Consistent icon sizing in navigation */
