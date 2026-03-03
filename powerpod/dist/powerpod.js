@@ -1,5 +1,5 @@
 /*!
-* powerpod 5.0.9
+* powerpod 5.1.0
 * https://github.com/bcgov/nr-af-pods/powerpod
 *
 * @license GPLv3 for open source use only
@@ -15710,6 +15710,7 @@
 
     .navigation-card {
       display: flex;
+      justify-content: flex-end;
       gap: 1rem;
       margin-bottom: 1rem;
       align-items: center;
@@ -28191,6 +28192,19 @@
             </p>
             <sl-button
               slot="footer"
+              variant="default"
+              @click=${() => {
+            var _a;
+            const dialog = (_a = this.shadowRoot) === null || _a === void 0 ? void 0 : _a.querySelector('sl-dialog');
+            if (dialog) {
+                dialog.hide();
+            }
+        }}
+            >
+              Close
+            </sl-button>
+            <sl-button
+              slot="footer"
               variant="primary"
               @click=${() => {
             var _a;
@@ -28205,19 +28219,6 @@
             >
               <sl-icon slot="prefix" name="arrow-right-circle"></sl-icon>
               Next Unanswered Question
-            </sl-button>
-            <sl-button
-              slot="footer"
-              variant="default"
-              @click=${() => {
-            var _a;
-            const dialog = (_a = this.shadowRoot) === null || _a === void 0 ? void 0 : _a.querySelector('sl-dialog');
-            if (dialog) {
-                dialog.hide();
-            }
-        }}
-            >
-              Close
             </sl-button>
           </sl-dialog>
 
@@ -28754,7 +28755,7 @@
       };
     };
     // @ts-ignore
-    POWERPOD.version = '5.0.9';
+    POWERPOD.version = '5.1.0';
     // @ts-ignore
     window.powerpod = POWERPOD;
   }

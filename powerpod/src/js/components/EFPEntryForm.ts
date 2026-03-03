@@ -2796,6 +2796,18 @@ export class EFPEntryForm extends LitElement {
             </p>
             <sl-button
               slot="footer"
+              variant="default"
+              @click=${() => {
+                const dialog = this.shadowRoot?.querySelector('sl-dialog');
+                if (dialog) {
+                  (dialog as any).hide();
+                }
+              }}
+            >
+              Close
+            </sl-button>
+            <sl-button
+              slot="footer"
               variant="primary"
               @click=${() => {
                 // Close the dialog
@@ -2809,18 +2821,6 @@ export class EFPEntryForm extends LitElement {
             >
               <sl-icon slot="prefix" name="arrow-right-circle"></sl-icon>
               Next Unanswered Question
-            </sl-button>
-            <sl-button
-              slot="footer"
-              variant="default"
-              @click=${() => {
-                const dialog = this.shadowRoot?.querySelector('sl-dialog');
-                if (dialog) {
-                  (dialog as any).hide();
-                }
-              }}
-            >
-              Close
             </sl-button>
           </sl-dialog>
 
