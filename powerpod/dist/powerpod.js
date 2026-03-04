@@ -1,5 +1,5 @@
 /*!
-* powerpod 5.1.0
+* powerpod 5.1.1
 * https://github.com/bcgov/nr-af-pods/powerpod
 *
 * @license GPLv3 for open source use only
@@ -23385,10 +23385,11 @@
               // For items WITHOUT questions: show edit icon, complete only when visited
               let iconName = null;
               let iconColor = '';
+              let useNaIcon = false;
               if (itemHasQuestions) {
                   // Standard icon logic for items with questions
                   if (isSkipped) {
-                      iconName = 'skip-forward-circle';
+                      useNaIcon = true;
                       iconColor = 'var(--sl-color-primary-600)'; // blue - intentional action
                   }
                   else if (isComplete) {
@@ -23420,13 +23421,26 @@
               const hasSubitems = 'items' in item && Array.isArray(item.items) && item.items.length > 0;
               // Check if expansion is disabled
               const isExpandDisabled = item.disableExpand === true;
+              // Data URI for the custom "NA" circle SVG icon (Not Applicable)
+              const naIconSvg = `data:image/svg+xml,${encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><circle cx="8" cy="8" r="7.5" fill="currentColor"/><text x="8" y="8" text-anchor="middle" dominant-baseline="central" fill="white" font-family="Arial,sans-serif" font-size="7.5" font-weight="bold">NA</text></svg>')}`;
               // Helper to render icon conditionally
-              const renderIcon = () => iconName ? html `
-        <sl-icon
-          name=${iconName}
-          style="color: ${iconColor}"
-        ></sl-icon>
-      ` : '';
+              const renderIcon = () => {
+                  if (useNaIcon) {
+                      return html `
+            <sl-icon
+              src=${naIconSvg}
+              label="Not Applicable"
+              style="color: ${iconColor}; font-size: 1.25em; width: 1.25em; height: 1.25em; vertical-align: middle; flex-shrink: 0; position: relative; top: -2px;"
+            ></sl-icon>
+          `;
+                  }
+                  return iconName ? html `
+          <sl-icon
+            name=${iconName}
+            style="color: ${iconColor}"
+          ></sl-icon>
+        ` : '';
+              };
               // If disableExpand is true, render as non-expandable container that clicks first item
               if (isExpandDisabled && hasSubitems) {
                   // Get the first item to click when the container is clicked
@@ -28755,7 +28769,7 @@
       };
     };
     // @ts-ignore
-    POWERPOD.version = '5.1.0';
+    POWERPOD.version = '5.1.1';
     // @ts-ignore
     window.powerpod = POWERPOD;
   }
