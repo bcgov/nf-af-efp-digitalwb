@@ -167,6 +167,7 @@ export declare class EFPEntryForm extends LitElement {
     private handleMultiselectChange;
     private handleMultilineTextInput;
     private handleForceSave;
+    private scrollContentToTop;
     private handleItemClick;
     private updateNavigationState;
     private goToPrevious;

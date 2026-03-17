@@ -1,5 +1,5 @@
 /*!
-* powerpod 5.1.1
+* powerpod 5.1.3
 * https://github.com/bcgov/nr-af-pods/powerpod
 *
 * @license GPLv3 for open source use only
@@ -27409,6 +27409,16 @@
               });
           }
       }
+      // Scroll the main content area to the top
+      scrollContentToTop() {
+          this.updateComplete.then(() => {
+              var _a;
+              const mainContent = (_a = this.shadowRoot) === null || _a === void 0 ? void 0 : _a.querySelector('main.main-content');
+              if (mainContent) {
+                  mainContent.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              }
+          });
+      }
       // Navigation item click event handler
       handleItemClick(item) {
           // Mark the chapter as visited for no-question chapter status icons
@@ -27418,6 +27428,7 @@
               this.currentSectionIndex = sectionIndex;
               updateNavigationURL(stepIndex, sectionIndex, this.flatSteps, true);
           }, (label) => this.updateNavigationState(label));
+          this.scrollContentToTop();
       }
       // Utility methods
       updateNavigationState(currentLabel) {
@@ -27551,6 +27562,7 @@
               updateNavigationURL(0, 0, this.flatSteps, true);
               this.requestUpdate();
           }
+          this.scrollContentToTop();
       }
       navigateToSection(sectionIndex) {
           const target = EFPNavigationUtils.navigateToSection(sectionIndex, this.flatSteps, this.sections);
@@ -27560,6 +27572,7 @@
               this.currentSectionIndex = target.sectionIndex;
               this.activeContent = { title: step.label, content: step.content };
               this.updateNavigationState(step.label);
+              this.scrollContentToTop();
               updateNavigationURL(target.stepIndex, target.sectionIndex, this.flatSteps, true);
               this.requestUpdate();
           }
@@ -27581,6 +27594,7 @@
               updateNavigationURL(hierarchyStepIndex, hierarchyStep.sectionIndex, this.flatSteps, true);
               this.requestUpdate();
           }
+          this.scrollContentToTop();
       }
       renderItems(items) {
           return EFPRenderUtils.renderItems(items, x, this.activeContent.title, (item) => this.handleItemClick(item), (items) => this.renderItems(items), (item) => this.getCompletionFromStore(item), (item) => this.getSkippedFromStore(item), (item) => this.getIncompleteFromStore(item), (item) => this.getVisitedFromStore(item));
@@ -28769,7 +28783,7 @@
       };
     };
     // @ts-ignore
-    POWERPOD.version = '5.1.1';
+    POWERPOD.version = '5.1.3';
     // @ts-ignore
     window.powerpod = POWERPOD;
   }

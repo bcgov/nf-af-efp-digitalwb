@@ -1772,6 +1772,16 @@ export class EFPEntryForm extends LitElement {
 
 
 
+  // Scroll the main content area to the top
+  private scrollContentToTop() {
+    this.updateComplete.then(() => {
+      const mainContent = this.shadowRoot?.querySelector('main.main-content');
+      if (mainContent) {
+        mainContent.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  }
+
   // Navigation item click event handler
   private handleItemClick(item: EFPSectionItem) {
     // Mark the chapter as visited for no-question chapter status icons
@@ -1787,6 +1797,8 @@ export class EFPEntryForm extends LitElement {
       },
       (label: string) => this.updateNavigationState(label)
     );
+
+    this.scrollContentToTop();
   }
 
   // Utility methods
@@ -1957,6 +1969,7 @@ export class EFPEntryForm extends LitElement {
       updateNavigationURL(0, 0, this.flatSteps, true);
       this.requestUpdate();
     }
+    this.scrollContentToTop();
   }
 
   private navigateToSection(sectionIndex: number) {
@@ -1971,6 +1984,7 @@ export class EFPEntryForm extends LitElement {
       this.currentSectionIndex = target.sectionIndex;
       this.activeContent = { title: step.label, content: step.content };
       this.updateNavigationState(step.label);
+      this.scrollContentToTop();
       updateNavigationURL(target.stepIndex, target.sectionIndex, this.flatSteps, true);
       this.requestUpdate();
     }
@@ -1997,6 +2011,7 @@ export class EFPEntryForm extends LitElement {
       updateNavigationURL(hierarchyStepIndex, hierarchyStep.sectionIndex, this.flatSteps, true);
       this.requestUpdate();
     }
+    this.scrollContentToTop();
   }
 
   private renderItems(items: EFPSectionItem[]): unknown {
